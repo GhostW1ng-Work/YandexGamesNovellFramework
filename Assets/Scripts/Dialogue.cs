@@ -8,6 +8,7 @@ using Articy.Testproect;
 [RequireComponent(typeof(ArticyFlowPlayer))]
 public class Dialogue : MonoBehaviour, IArticyFlowPlayerCallbacks
 {
+	[SerializeField] private ArticyRef _myRef;
 	[SerializeField] private ArticyDebugBranch _brunchTemplate;
 	[SerializeField] private CanvasGroup _dialoguePanel;
 	[SerializeField] private RectTransform _branchesLayout;
@@ -16,8 +17,10 @@ public class Dialogue : MonoBehaviour, IArticyFlowPlayerCallbacks
 
 	private bool _isDialogActive = false;
 	private ArticyFlowPlayer _flowPlayer;
+	private Entity _currentSpeaker;
 
 	public bool IsDialogActive => _isDialogActive;
+	public ArticyRef MyRef => _myRef;
 
 	private void Start()
 	{
@@ -58,6 +61,7 @@ public class Dialogue : MonoBehaviour, IArticyFlowPlayerCallbacks
 				Entity speakerEntity = objectWithSpeaker.Speaker as Entity;
 				if(speakerEntity != null)
 				{
+					_currentSpeaker = speakerEntity;
 					_dialogueSpeaker.text = speakerEntity.DisplayName;
 				}
 			}
@@ -88,6 +92,7 @@ public class Dialogue : MonoBehaviour, IArticyFlowPlayerCallbacks
 			var branchButton = button.GetComponent<ArticyDebugBranch>();
 			if (branchButton == null)
 				branchButton = button.gameObject.AddComponent<ArticyDebugBranch>();
+			branchButton.SetCurrentSpeaker(_currentSpeaker);
 			branchButton.AssignBranch(_flowPlayer, branch);
 		}
 	}

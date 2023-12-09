@@ -1696,6 +1696,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a4c5c926fae1d24e9d709a6714ccced, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _myRef:
+    instanceId: 0
+    referencingMode: 0
+    lowId: 335
+    highId: 16777216
   _brunchTemplate: {fileID: 11412692, guid: 0f55dfa733c12e34daf488047675488f, type: 3}
   _dialoguePanel: {fileID: 1561790504}
   _branchesLayout: {fileID: 1561784545}
@@ -1720,7 +1725,7 @@ MonoBehaviour:
   startOn:
     instanceId: 0
     referencingMode: 0
-    lowId: 487
+    lowId: 285
     highId: 16777216
   pauseOn: 4
   ignoreInvalidBranches: 1
