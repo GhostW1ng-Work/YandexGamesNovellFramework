@@ -8,7 +8,7 @@ using Articy.Testproect;
 [RequireComponent(typeof(ArticyFlowPlayer))]
 public class Dialogue : MonoBehaviour, IArticyFlowPlayerCallbacks
 {
-	[SerializeField] private ArticyRef _myRef;
+	[SerializeField] private RewardAdShower _rewardAdShower;
 	[SerializeField] private ArticyDebugBranch _brunchTemplate;
 	[SerializeField] private CanvasGroup _dialoguePanel;
 	[SerializeField] private RectTransform _branchesLayout;
@@ -20,7 +20,6 @@ public class Dialogue : MonoBehaviour, IArticyFlowPlayerCallbacks
 	private Entity _currentSpeaker;
 
 	public bool IsDialogActive => _isDialogActive;
-	public ArticyRef MyRef => _myRef;
 
 	private void Start()
 	{

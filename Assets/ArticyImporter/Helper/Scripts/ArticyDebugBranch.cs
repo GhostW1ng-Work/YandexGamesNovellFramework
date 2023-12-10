@@ -3,27 +3,38 @@ using Articy.Unity;
 using Articy.Unity.Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using Agava.YandexGames;
+using System.Collections;
 
 public class ArticyDebugBranch : MonoBehaviour
 {
-	private Text dialogText;
+	private TMP_Text dialogText;
 
 	private Branch branch;
 
 	private ArticyFlowPlayer processor;
 	private Entity _speaker;
+	private bool _isRewarded;
 
+	private IEnumerator Start()
+	{
+#if !UNITY_WEBGL || UNITY_EDITOR
+		yield break;
+#endif
+
+		// Always wait for it if invoking something immediately in the first scene.
+		yield return YandexGamesSdk.Initialize();
+	}
 
 	public void AssignBranch(ArticyFlowPlayer aProcessor, Branch aBranch)
 	{
-
 		GetComponentInChildren<Button>().onClick.AddListener(OnBranchSelected);
-		dialogText = GetComponentInChildren<Text>();
+		dialogText = GetComponentInChildren<TMP_Text>();
 
 		branch = aBranch;
 		processor = aProcessor;
 
-	
 		dialogText.color = aBranch.IsValid ? Color.black : Color.red;
 
 		var target = aBranch.Target;
@@ -56,7 +67,34 @@ public class ArticyDebugBranch : MonoBehaviour
 
 	public void OnBranchSelected()
 	{
-		processor.Play(branch);
+		var target = branch.Target;
+		var objectWithRewardDialogue = target as IObjectWithFeatureRewardDialogue;
+
+		if (objectWithRewardDialogue != null)
+		{
+			_isRewarded = false;
+#if UNITY_EDITOR || !UNITY_WEBGL
+			print("показать видеорекламу");
+#else
+			VideoAd.Show(onRewardedCallback: OnRewarded, onCloseCallback:PlayNextLine);
+#endif
+		}
+		else
+		{
+			processor.Play(branch);
+		}
+	}
+
+	private void OnRewarded()
+	{
+		_isRewarded = true;
+	}
+
+
+	private void PlayNextLine()
+	{
+		if(_isRewarded)
+			processor.Play(branch);
 	}
 
 	public void SetCurrentSpeaker(Entity speaker)
