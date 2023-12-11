@@ -321,7 +321,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 29.6
+  m_fontSize: 59.9
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -546,6 +546,82 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1023353029
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1023353030}
+  - component: {fileID: 1023353032}
+  - component: {fileID: 1023353031}
+  m_Layer: 5
+  m_Name: Background
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1023353030
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023353029}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1328983851}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1023353031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023353029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1023353032
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023353029}
+  m_CullTransparentMesh: 1
 --- !u!1 &1147365430
 GameObject:
   m_ObjectHideFlags: 0
@@ -674,7 +750,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 112866018}
   m_Direction: 0
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -756,7 +832,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.71400005}
-  m_AnchoredPosition: {x: 5.622589, y: 26.058502}
+  m_AnchoredPosition: {x: 5.6225586, y: 26.058502}
   m_SizeDelta: {x: -30.245, y: -57.271698}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1215336257
@@ -1044,6 +1120,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1023353030}
   - {fileID: 1561790503}
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -1379,7 +1456,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.12654792, y: 0.7524587}
   m_AnchorMax: {x: 1, y: 0.8955414}
-  m_AnchoredPosition: {x: -4.25, y: -1.0999908}
+  m_AnchoredPosition: {x: -4.25, y: -1.0999756}
   m_SizeDelta: {x: -10.5, y: -3}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &1561777347
@@ -1419,11 +1496,11 @@ RectTransform:
   - {fileID: 1561777347}
   - {fileID: 1215336256}
   m_Father: {fileID: 1328983851}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.16483335, y: 0.101666674}
   m_AnchorMax: {x: 0.83833325, y: 0.8866667}
-  m_AnchoredPosition: {x: -1.4999695, y: 3.5}
+  m_AnchoredPosition: {x: -1.499939, y: 3.5}
   m_SizeDelta: {x: -0.53222656, y: -2.6947937}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &1561790504
@@ -1523,7 +1600,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 57.25
+  m_fontSize: 72
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1803,6 +1880,7 @@ MonoBehaviour:
   _brunchTemplate: {fileID: 11412692, guid: 0f55dfa733c12e34daf488047675488f, type: 3}
   _dialoguePanel: {fileID: 1561790504}
   _branchesLayout: {fileID: 1279936042}
+  _backgroundImage: {fileID: 1023353031}
   _dialogueText: {fileID: 1591299569}
   _dialogueSpeaker: {fileID: 423737736}
 --- !u!114 &2094780978

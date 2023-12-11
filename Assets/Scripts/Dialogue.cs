@@ -4,6 +4,7 @@ using Articy.Unity;
 using Articy.Unity.Interfaces;
 using System.Collections.Generic;
 using Articy.Testproect;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(ArticyFlowPlayer))]
 public class Dialogue : MonoBehaviour, IArticyFlowPlayerCallbacks
@@ -12,6 +13,7 @@ public class Dialogue : MonoBehaviour, IArticyFlowPlayerCallbacks
 	[SerializeField] private ArticyDebugBranch _brunchTemplate;
 	[SerializeField] private CanvasGroup _dialoguePanel;
 	[SerializeField] private RectTransform _branchesLayout;
+	[SerializeField] private Image _backgroundImage;
 	[SerializeField] private TMP_Text _dialogueText;
 	[SerializeField] private TMP_Text _dialogueSpeaker;
 
@@ -53,20 +55,34 @@ public class Dialogue : MonoBehaviour, IArticyFlowPlayerCallbacks
 
 	public void OnFlowPlayerPaused(IFlowObject aObject)
 	{
+		IAsset articyAsset = null;
 		if (aObject is IObjectWithSpeaker objectWithSpeaker)
 		{
-			if(objectWithSpeaker != null)
+			if (objectWithSpeaker != null)
 			{
 				Entity speakerEntity = objectWithSpeaker.Speaker as Entity;
-				if(speakerEntity != null)
+				if (speakerEntity != null)
 				{
 					_currentSpeaker = speakerEntity;
 					_dialogueSpeaker.text = speakerEntity.DisplayName;
+				}
+
+				IObjectWithPreviewImage objectWithImage = speakerEntity;
+				if (objectWithImage != null)
+				{
+					var objectWithTestCharacter = objectWithImage as IObjectWithFeatureTestCharacter;
+					if (objectWithTestCharacter.GetFeatureTestCharacter().IsNarrator)
+					{
+						articyAsset = objectWithImage.PreviewImage.Asset;
+						_backgroundImage.sprite = articyAsset.LoadAssetAsSprite();
+					}
 				}
 			}
 		}
 		else
 			_dialogueSpeaker.text = string.Empty;
+
+
 
 		if (aObject is IObjectWithText objectWithText)
 			_dialogueText.text = objectWithText.Text;
@@ -74,6 +90,9 @@ public class Dialogue : MonoBehaviour, IArticyFlowPlayerCallbacks
 			_dialogueText.text = objectWithLocalizableText.Text;
 		else
 			_dialogueText.text = string.Empty;
+
+
+
 	}
 
 	public void OnBranchesUpdated(IList<Branch> aBranches)
