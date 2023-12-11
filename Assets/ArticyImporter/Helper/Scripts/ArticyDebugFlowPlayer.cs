@@ -116,7 +116,7 @@ public class ArticyDebugFlowPlayer : MonoBehaviour, IArticyFlowPlayerCallbacks
 		{
 			ArticyObject speaker = dlgSpeaker.Speaker;
 			if (speaker != null)
-			{
+			{	
 				var speakerWithPreviewImage = speaker as IObjectWithPreviewImage;
 				if (speakerWithPreviewImage != null)
 				{
