@@ -8,6 +8,8 @@ using Articy.Testproect;
 [RequireComponent(typeof(ArticyFlowPlayer))]
 public class Dialogue : MonoBehaviour, IArticyFlowPlayerCallbacks
 {
+	private const string CURRENT_LINE_ID = "CurrentLineId";
+
 	[SerializeField] private LocationChanger _locationChanger;
 	[SerializeField] private RewardAdShower _rewardAdShower;
 	[SerializeField] private ArticyDebugBranch _brunchTemplate;
@@ -27,6 +29,10 @@ public class Dialogue : MonoBehaviour, IArticyFlowPlayerCallbacks
 	private void Start()
 	{
 		_flowPlayer = GetComponent<ArticyFlowPlayer>();
+		if (PlayerPrefs.HasKey(CURRENT_LINE_ID))
+		{
+			_flowPlayer.StartOn = ArticyDatabase.GetObject(PlayerPrefs.GetString(CURRENT_LINE_ID));
+		}
 	}
 
 	private void ChangePanelActivity(bool isActive)
@@ -84,14 +90,17 @@ public class Dialogue : MonoBehaviour, IArticyFlowPlayerCallbacks
 
 
 		if (aObject is IObjectWithText objectWithText)
+		{
 			_dialogueText.text = objectWithText.Text;
+		}
 		else if (aObject is IObjectWithLocalizableText objectWithLocalizableText)
+		{
 			_dialogueText.text = objectWithLocalizableText.Text;
+		}
 		else
 			_dialogueText.text = string.Empty;
-
-
-
+		PlayerPrefs.SetString(CURRENT_LINE_ID, ((ArticyObject)_flowPlayer.CurrentObject).TechnicalName);
+		PlayerPrefs.Save();
 	}
 
 	public void OnBranchesUpdated(IList<Branch> aBranches)
