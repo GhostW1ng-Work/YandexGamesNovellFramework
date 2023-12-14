@@ -4,16 +4,15 @@ using Articy.Unity;
 using Articy.Unity.Interfaces;
 using System.Collections.Generic;
 using Articy.Testproect;
-using UnityEngine.UI;
 
 [RequireComponent(typeof(ArticyFlowPlayer))]
 public class Dialogue : MonoBehaviour, IArticyFlowPlayerCallbacks
 {
+	[SerializeField] private LocationChanger _locationChanger;
 	[SerializeField] private RewardAdShower _rewardAdShower;
 	[SerializeField] private ArticyDebugBranch _brunchTemplate;
 	[SerializeField] private CanvasGroup _dialoguePanel;
 	[SerializeField] private RectTransform _branchesLayout;
-	[SerializeField] private Image _backgroundImage;
 	[SerializeField] private TMP_Text _dialogueText;
 	[SerializeField] private TMP_Text _dialogueSpeaker;
 
@@ -22,6 +21,8 @@ public class Dialogue : MonoBehaviour, IArticyFlowPlayerCallbacks
 	private Entity _currentSpeaker;
 
 	public bool IsDialogActive => _isDialogActive;
+
+	public bool IsInShadowState => throw new System.NotImplementedException();
 
 	private void Start()
 	{
@@ -55,7 +56,6 @@ public class Dialogue : MonoBehaviour, IArticyFlowPlayerCallbacks
 
 	public void OnFlowPlayerPaused(IFlowObject aObject)
 	{
-		IAsset articyAsset = null;
 		if (aObject is IObjectWithSpeaker objectWithSpeaker)
 		{
 			if (objectWithSpeaker != null)
@@ -73,8 +73,7 @@ public class Dialogue : MonoBehaviour, IArticyFlowPlayerCallbacks
 					var objectWithTestCharacter = objectWithImage as IObjectWithFeatureTestCharacter;
 					if (objectWithTestCharacter.GetFeatureTestCharacter().IsNarrator)
 					{
-						articyAsset = objectWithImage.PreviewImage.Asset;
-						_backgroundImage.sprite = articyAsset.LoadAssetAsSprite();
+						_locationChanger.ChangeLocation(ArticyDatabase.DefaultGlobalVariables.GetVariableByString<int>("Locations.LocationIndex"));
 					}
 				}
 			}

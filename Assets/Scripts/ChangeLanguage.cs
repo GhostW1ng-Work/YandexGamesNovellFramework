@@ -30,9 +30,6 @@ public class ChangeLanguage : MonoBehaviour
 	private void SetLanguage()
 	{
 		_isEng = !_isEng;
-		if (_isEng)
-			ArticyDatabase.Localization.SetLanguage("en");
-		else
-			ArticyDatabase.Localization.SetLanguage("ru");
+		ArticyDatabase.Localization.SetLanguage(ArticyDatabase.Localization.Language == "en" ? "ru" : "en");
 	}
 }
