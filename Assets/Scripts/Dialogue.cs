@@ -9,6 +9,7 @@ using Articy.Testproect;
 public class Dialogue : MonoBehaviour, IArticyFlowPlayerCallbacks
 {
 	private const string CURRENT_LINE_ID = "CurrentLineId";
+	private const string CURRENT_LOCATION_INDEX = "CurrentLocationIndex";
 
 	[SerializeField] private LocationChanger _locationChanger;
 	[SerializeField] private RewardAdShower _rewardAdShower;
@@ -32,6 +33,10 @@ public class Dialogue : MonoBehaviour, IArticyFlowPlayerCallbacks
 		if (PlayerPrefs.HasKey(CURRENT_LINE_ID))
 		{
 			_flowPlayer.StartOn = ArticyDatabase.GetObject(PlayerPrefs.GetString(CURRENT_LINE_ID));
+		}
+		if (PlayerPrefs.HasKey(CURRENT_LOCATION_INDEX))
+		{
+			ArticyDatabase.DefaultGlobalVariables.SetVariableByString("Locations.LocationIndex", PlayerPrefs.GetInt(CURRENT_LOCATION_INDEX));
 		}
 	}
 
@@ -80,6 +85,10 @@ public class Dialogue : MonoBehaviour, IArticyFlowPlayerCallbacks
 					if (objectWithTestCharacter.GetFeatureTestCharacter().IsNarrator)
 					{
 						_locationChanger.ChangeLocation(ArticyDatabase.DefaultGlobalVariables.GetVariableByString<int>("Locations.LocationIndex"));
+						print(ArticyDatabase.DefaultGlobalVariables.GetVariableByString<int>("Locations.LocationIndex"));
+						PlayerPrefs.SetInt(CURRENT_LOCATION_INDEX, ArticyDatabase.DefaultGlobalVariables.GetVariableByString<int>("Locations.LocationIndex"));
+						PlayerPrefs.Save();
+
 					}
 				}
 			}

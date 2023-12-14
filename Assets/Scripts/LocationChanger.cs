@@ -6,16 +6,23 @@ using UnityEngine.UI;
 
 public class LocationChanger : MonoBehaviour
 {
+	private const string CURRENT_LOCATION_INDEX = "CurrentLocationIndex";
+
 	[SerializeField] private Image _backgroundImage;
 	[ArticyTypeConstraint(typeof(ILocationImage))]
 	[SerializeField] private ArticyRef[] _locations;
 
-	[ArticyTypeConstraint(typeof(ILocationImage))]
-	[SerializeField] private ArticyRef _image;
-
 	private void Start()
 	{
-		ChangeLocation(0);
+		if (PlayerPrefs.HasKey(CURRENT_LOCATION_INDEX))
+		{
+			ChangeLocation(PlayerPrefs.GetInt(CURRENT_LOCATION_INDEX));
+			print(PlayerPrefs.GetInt(CURRENT_LOCATION_INDEX));
+		}
+		else
+		{
+			ChangeLocation(0);
+		}
 	}
 
 	public void ChangeLocation(int index)
@@ -23,5 +30,6 @@ public class LocationChanger : MonoBehaviour
 		IAsset asset = null;
 		asset = _locations[index].GetObject<LocationImage>().PreviewImage.Asset;
 		_backgroundImage.sprite = asset.LoadAssetAsSprite();
+		print(PlayerPrefs.GetInt(CURRENT_LOCATION_INDEX));
 	}
 }
