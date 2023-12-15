@@ -10,7 +10,10 @@ public class Dialogue : MonoBehaviour, IArticyFlowPlayerCallbacks
 {
 	private const string CURRENT_LINE_ID = "CurrentLineId";
 	private const string CURRENT_LOCATION_INDEX = "CurrentLocationIndex";
+	private const string IS_ENDED = "IsEnded";
 
+
+	[SerializeField] private MainMenuReturner _mainMenuReturner;
 	[SerializeField] private LocationChanger _locationChanger;
 	[SerializeField] private RewardAdShower _rewardAdShower;
 	[SerializeField] private ArticyDebugBranch _brunchTemplate;
@@ -22,14 +25,31 @@ public class Dialogue : MonoBehaviour, IArticyFlowPlayerCallbacks
 	private bool _isDialogActive = false;
 	private ArticyFlowPlayer _flowPlayer;
 	private Entity _currentSpeaker;
-
-	public bool IsDialogActive => _isDialogActive;
-
-	public bool IsInShadowState => throw new System.NotImplementedException();
+	private int _isEnded = 0;
 
 	private void Start()
 	{
 		_flowPlayer = GetComponent<ArticyFlowPlayer>();
+		if (PlayerPrefs.HasKey(IS_ENDED))
+		{
+			if (PlayerPrefs.GetInt(IS_ENDED) == 1)
+			{
+				_mainMenuReturner.EnablePanel();
+				_mainMenuReturner.ReturnToMainMenu();
+			}
+			else if (PlayerPrefs.GetInt(IS_ENDED) == 0)
+			{
+				_mainMenuReturner.DisablePanel();
+			}
+			else
+			{
+				throw new UnassignedReferenceException();
+			}
+		}
+		else
+		{
+			_mainMenuReturner.DisablePanel();
+		}
 		if (PlayerPrefs.HasKey(CURRENT_LINE_ID))
 		{
 			_flowPlayer.StartOn = ArticyDatabase.GetObject(PlayerPrefs.GetString(CURRENT_LINE_ID));
@@ -85,7 +105,6 @@ public class Dialogue : MonoBehaviour, IArticyFlowPlayerCallbacks
 					if (objectWithTestCharacter.GetFeatureTestCharacter().IsNarrator)
 					{
 						_locationChanger.ChangeLocation(ArticyDatabase.DefaultGlobalVariables.GetVariableByString<int>("Locations.LocationIndex"));
-						print(ArticyDatabase.DefaultGlobalVariables.GetVariableByString<int>("Locations.LocationIndex"));
 						PlayerPrefs.SetInt(CURRENT_LOCATION_INDEX, ArticyDatabase.DefaultGlobalVariables.GetVariableByString<int>("Locations.LocationIndex"));
 						PlayerPrefs.Save();
 
@@ -93,23 +112,28 @@ public class Dialogue : MonoBehaviour, IArticyFlowPlayerCallbacks
 				}
 			}
 		}
-		else
-			_dialogueSpeaker.text = string.Empty;
 
 
 
 		if (aObject is IObjectWithText objectWithText)
 		{
 			_dialogueText.text = objectWithText.Text;
+			PlayerPrefs.SetString(CURRENT_LINE_ID, ((ArticyObject)_flowPlayer.CurrentObject).TechnicalName);
+			PlayerPrefs.Save();
 		}
 		else if (aObject is IObjectWithLocalizableText objectWithLocalizableText)
 		{
 			_dialogueText.text = objectWithLocalizableText.Text;
+			PlayerPrefs.SetString(CURRENT_LINE_ID, ((ArticyObject)_flowPlayer.CurrentObject).TechnicalName);
+			PlayerPrefs.Save();
 		}
 		else
-			_dialogueText.text = string.Empty;
-		PlayerPrefs.SetString(CURRENT_LINE_ID, ((ArticyObject)_flowPlayer.CurrentObject).TechnicalName);
-		PlayerPrefs.Save();
+		{
+			PlayerPrefs.SetInt(IS_ENDED, 1);
+			PlayerPrefs.Save();
+			_mainMenuReturner.ReturnToMainMenu();
+		}
+
 	}
 
 	public void OnBranchesUpdated(IList<Branch> aBranches)

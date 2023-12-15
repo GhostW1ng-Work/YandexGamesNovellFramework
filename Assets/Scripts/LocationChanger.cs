@@ -17,7 +17,6 @@ public class LocationChanger : MonoBehaviour
 		if (PlayerPrefs.HasKey(CURRENT_LOCATION_INDEX))
 		{
 			ChangeLocation(PlayerPrefs.GetInt(CURRENT_LOCATION_INDEX));
-			print(PlayerPrefs.GetInt(CURRENT_LOCATION_INDEX));
 		}
 		else
 		{
@@ -30,6 +29,5 @@ public class LocationChanger : MonoBehaviour
 		IAsset asset = null;
 		asset = _locations[index].GetObject<LocationImage>().PreviewImage.Asset;
 		_backgroundImage.sprite = asset.LoadAssetAsSprite();
-		print(PlayerPrefs.GetInt(CURRENT_LOCATION_INDEX));
 	}
 }

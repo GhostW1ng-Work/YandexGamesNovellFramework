@@ -22,7 +22,6 @@ public class ShowInterstitialAd : MonoBehaviour
 		else
 		{
 #if UNITY_EDITOR || !UNITY_WEBGL
-			print("Показать рекламу");
 			_currentTimeAfterAd = Random.Range(_minTime, _maxTime);
 #else
 			ShowInterstitial();
