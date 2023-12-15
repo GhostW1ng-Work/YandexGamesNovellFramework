@@ -25,7 +25,6 @@ public class Dialogue : MonoBehaviour, IArticyFlowPlayerCallbacks
 	private bool _isDialogActive = false;
 	private ArticyFlowPlayer _flowPlayer;
 	private Entity _currentSpeaker;
-	private int _isEnded = 0;
 
 	private void Start()
 	{

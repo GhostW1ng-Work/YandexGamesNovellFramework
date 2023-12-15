@@ -22,11 +22,11 @@ public class SaveDeleter : MonoBehaviour
 		_button.onClick.RemoveListener(DeleteSave);
 	}
 
-	[MenuItem("Tools/Delete")]
+/*	[MenuItem("Tools/Delete")]
 	static public void DeleteSaves()
 	{
 		PlayerPrefs.DeleteAll();
-	}
+	}*/
 
 	public void DeleteSave()
 	{
