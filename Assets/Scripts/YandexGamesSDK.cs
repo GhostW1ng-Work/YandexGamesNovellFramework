@@ -15,11 +15,13 @@ public class YandexGamesSDK : MonoBehaviour
 		yield return YandexGamesSdk.Initialize();
 		if (YandexGamesSdk.Environment.i18n.lang == "ru")
 		{
+			Lean.Localization.LeanLocalization.SetCurrentLanguageAll("ru");
 			ArticyDatabase.Localization.SetLanguage("ru");
 			_changeLanguage.CheckLanguage();
 		}
 		else if (YandexGamesSdk.Environment.i18n.lang == "en")
 		{
+			Lean.Localization.LeanLocalization.SetCurrentLanguageAll("en");
 			ArticyDatabase.Localization.SetLanguage("en");
 			_changeLanguage.CheckLanguage();
 		}

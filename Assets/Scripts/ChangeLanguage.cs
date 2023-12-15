@@ -51,11 +51,13 @@ public class ChangeLanguage : MonoBehaviour
 		if (ArticyDatabase.Localization.Language == "en")
 		{
 			ArticyDatabase.Localization.SetLanguage("ru");
+			Lean.Localization.LeanLocalization.SetCurrentLanguageAll("ru");
 			_currentLanguageImage.sprite = _languageImages[0];
 		}
 		else
 		{
 			ArticyDatabase.Localization.SetLanguage("en");
+			Lean.Localization.LeanLocalization.SetCurrentLanguageAll("en");
 			_currentLanguageImage.sprite = _languageImages[1];
 		}
 	}
