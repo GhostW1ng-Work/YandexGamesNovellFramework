@@ -5,16 +5,23 @@ using Agava.YandexGames;
 using System.Collections;
 using TMPro;
 
+[RequireComponent(typeof(Image), typeof(Button))]
 public class ChangeLanguage : MonoBehaviour
 {
-	[SerializeField] private TMP_Text _text;
+	[SerializeField] private Sprite[] _languageImages;
 
+	private Image _currentLanguageImage;
 	private Button _button;
-	private bool _isEng = true;
 
 	private void Awake()
 	{
+		_currentLanguageImage = GetComponent<Image>();
 		_button = GetComponent<Button>();
+	}
+
+	private void Start()
+	{
+		CheckLanguage();
 	}
 
 	private void OnEnable()
@@ -27,9 +34,29 @@ public class ChangeLanguage : MonoBehaviour
 		_button.onClick.RemoveListener(SetLanguage);
 	}
 
+	public void CheckLanguage()
+	{
+		if (ArticyDatabase.Localization.Language == "en")
+		{
+			_currentLanguageImage.sprite = _languageImages[1];
+		}
+		else
+		{
+			_currentLanguageImage.sprite = _languageImages[0];
+		}
+	}
+
 	private void SetLanguage()
 	{
-		_isEng = !_isEng;
-		ArticyDatabase.Localization.SetLanguage(ArticyDatabase.Localization.Language == "en" ? "ru" : "en");
+		if (ArticyDatabase.Localization.Language == "en")
+		{
+			ArticyDatabase.Localization.SetLanguage("ru");
+			_currentLanguageImage.sprite = _languageImages[0];
+		}
+		else
+		{
+			ArticyDatabase.Localization.SetLanguage("en");
+			_currentLanguageImage.sprite = _languageImages[1];
+		}
 	}
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class YandexGamesSDK : MonoBehaviour
 {
+	[SerializeField] private ChangeLanguage _changeLanguage;
     private IEnumerator Start()
     {
 #if !UNITY_WEBGL || UNITY_EDITOR
@@ -15,10 +16,12 @@ public class YandexGamesSDK : MonoBehaviour
 		if (YandexGamesSdk.Environment.i18n.lang == "ru")
 		{
 			ArticyDatabase.Localization.SetLanguage("ru");
+			_changeLanguage.CheckLanguage();
 		}
 		else if (YandexGamesSdk.Environment.i18n.lang == "en")
 		{
 			ArticyDatabase.Localization.SetLanguage("en");
+			_changeLanguage.CheckLanguage();
 		}
 #endif
 	}
