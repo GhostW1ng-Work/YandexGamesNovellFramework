@@ -25,10 +25,10 @@ public class ArticyDebugBranch : MonoBehaviour
 	{
 #if !UNITY_WEBGL || UNITY_EDITOR
 		yield break;
-#endif
-
+#else
 		// Always wait for it if invoking something immediately in the first scene.
 		yield return YandexGamesSdk.Initialize();
+#endif
 	}
 
 	public void AssignBranch(ArticyFlowPlayer aProcessor, Branch aBranch)
