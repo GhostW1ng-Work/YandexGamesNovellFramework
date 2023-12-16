@@ -1,0 +1,19 @@
+<ProjectInfo Version="1">
+  <Signature>E87947F095F47E830A33B9811908F802D92AAE6581B70E44C3606890138415A5</Signature>
+  <Content>
+    <Project Guid="639776e7-d792-451a-8d7c-dfd17d3f47ae">
+      <DisplayName Value="BaseYandexGamesNovell"/>
+      <DetailName Value=""/>
+      <MainProjectGuid Value="a28921ab-ac99-4362-b2c5-fe85c2733663"/>
+      <IconType Value="0"/>
+      <IdProjectIcon Value="00000000-0000-0000-0000-000000000000"/>
+      <ScmProviderGuid Value="0745c2ee-abe3-451b-934e-7f597f56c0d7"/>
+      <ScmConfiguration Value=""/>
+      <CreationTimeStamp Value="638383086357169991"/>
+      <PartitionHash Value="3A255936A6032A3470F4B1A7B96C673A6B1379B4BB51EF5711AE98984627F0DA"/>
+      <SaveFileVersion Value="57"/>
+      <ProjectType Value="0"/>
+      <IsOnlineProject Value="False"/>
+    </Project>
+  </Content>
+</ProjectInfo>

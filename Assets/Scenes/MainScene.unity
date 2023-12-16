@@ -1599,15 +1599,15 @@ MonoBehaviour:
   _locations:
   - instanceId: 0
     referencingMode: 0
-    lowId: 1370
+    lowId: 354
     highId: 16777216
   - instanceId: 0
     referencingMode: 0
-    lowId: 1815
+    lowId: 345
     highId: 16777216
   - instanceId: 0
     referencingMode: 0
-    lowId: 2310
+    lowId: 363
     highId: 16777216
 --- !u!1 &1547825185
 GameObject:
@@ -2398,7 +2398,7 @@ MonoBehaviour:
   startOn:
     instanceId: 0
     referencingMode: 0
-    lowId: 285
+    lowId: 510
     highId: 16777216
   pauseOn: 4
   ignoreInvalidBranches: 1

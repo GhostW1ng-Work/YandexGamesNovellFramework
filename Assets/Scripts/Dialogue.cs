@@ -3,7 +3,7 @@ using TMPro;
 using Articy.Unity;
 using Articy.Unity.Interfaces;
 using System.Collections.Generic;
-using Articy.Testproect;
+using Articy.Baseyandexgamesnovell;
 
 [RequireComponent(typeof(ArticyFlowPlayer))]
 public class Dialogue : MonoBehaviour, IArticyFlowPlayerCallbacks
@@ -100,8 +100,8 @@ public class Dialogue : MonoBehaviour, IArticyFlowPlayerCallbacks
 				IObjectWithPreviewImage objectWithImage = speakerEntity;
 				if (objectWithImage != null)
 				{
-					var objectWithTestCharacter = objectWithImage as IObjectWithFeatureTestCharacter;
-					if (objectWithTestCharacter.GetFeatureTestCharacter().IsNarrator)
+					var objectWithTestCharacter = objectWithImage as IObjectWithFeatureCharacter;
+					if (objectWithTestCharacter.GetFeatureCharacter().IsNarrator)
 					{
 						_locationChanger.ChangeLocation(ArticyDatabase.DefaultGlobalVariables.GetVariableByString<int>("Locations.LocationIndex"));
 						PlayerPrefs.SetInt(CURRENT_LOCATION_INDEX, ArticyDatabase.DefaultGlobalVariables.GetVariableByString<int>("Locations.LocationIndex"));

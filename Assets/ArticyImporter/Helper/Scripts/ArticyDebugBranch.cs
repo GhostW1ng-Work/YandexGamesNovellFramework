@@ -1,4 +1,4 @@
-﻿using Articy.Testproect;
+﻿using Articy.Baseyandexgamesnovell;
 using Articy.Unity;
 using Articy.Unity.Interfaces;
 using UnityEngine;
@@ -52,12 +52,12 @@ public class ArticyDebugBranch : MonoBehaviour
 			EnableRewardVisual();
 		}
 		ArticyObject player = ArticyDatabase.GetObject(_speaker.TechnicalName);
-		var characterFeature = player as IObjectWithFeatureTestCharacter;
+		var characterFeature = player as IObjectWithFeatureCharacter;
 
 		if (obj != null)
 		{
 			dialogText.text = obj.MenuText;
-			if (characterFeature.GetFeatureTestCharacter().IsPlayer)
+			if (characterFeature.GetFeatureCharacter().IsPlayer)
 			{
 				dialogText.text = ">>>";
 			}
@@ -77,7 +77,7 @@ public class ArticyDebugBranch : MonoBehaviour
 	public void OnBranchSelected()
 	{
 		var target = branch.Target;
-		var objectWithRewardDialogue = target as IObjectWithFeatureRewardDialogue;
+		var objectWithRewardDialogue = target as IObjectWithFeatureRewardDialogue; 
 
 		if (objectWithRewardDialogue != null)
 		{
