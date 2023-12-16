@@ -150,6 +150,7 @@ public class Dialogue : MonoBehaviour, IArticyFlowPlayerCallbacks
 			var branchButton = button.GetComponent<ArticyDebugBranch>();
 			if (branchButton == null)
 				branchButton = button.gameObject.AddComponent<ArticyDebugBranch>();
+
 			branchButton.SetCurrentSpeaker(_currentSpeaker);
 			branchButton.AssignBranch(_flowPlayer, branch);
 		}

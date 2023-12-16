@@ -9,6 +9,10 @@ using System.Collections;
 
 public class ArticyDebugBranch : MonoBehaviour
 {
+	[SerializeField] private Image _buttonImage;
+	[SerializeField] private Image _adImage;
+	[SerializeField] private Color _adImageColor;
+
 	private TMP_Text dialogText;
 
 	private Branch branch;
@@ -41,7 +45,12 @@ public class ArticyDebugBranch : MonoBehaviour
 		dialogText.text = "";
 
 		var obj = target as IObjectWithMenuText;
+		var objectWithRewardDialogue = target as IObjectWithFeatureRewardDialogue;
 
+		if (objectWithRewardDialogue != null)
+		{
+			EnableRewardVisual();
+		}
 		ArticyObject player = ArticyDatabase.GetObject(_speaker.TechnicalName);
 		var characterFeature = player as IObjectWithFeatureTestCharacter;
 
@@ -100,5 +109,11 @@ public class ArticyDebugBranch : MonoBehaviour
 	public void SetCurrentSpeaker(Entity speaker)
 	{
 		_speaker = speaker;
+	}
+
+	public void EnableRewardVisual()
+	{
+		_adImage.enabled = true;
+		_buttonImage.color = _adImageColor;
 	}
 }
